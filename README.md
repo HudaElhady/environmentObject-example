@@ -1,0 +1,2 @@
+# environmentObject-example
+SwiftUI EnvironmentObject
