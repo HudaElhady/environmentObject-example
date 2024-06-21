@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct CounterView: View {
     @StateObject var numberManager = NumberManager()
     
     var body: some View {
@@ -32,7 +32,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    CounterView()
 }
 
 struct BlueView: View {
