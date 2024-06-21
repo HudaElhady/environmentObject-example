@@ -8,17 +8,60 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var numberManager = NumberManager()
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            RedView()
+                .padding()
+            
+            Button("Generate number"){
+                numberManager.counter += 1
+            }
+            .padding()
+            .foregroundColor(.white)
+            .background(Color.green)
+            
+            BlueView()
+                .padding()
         }
-        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.black)
+        .environmentObject(numberManager)
     }
 }
 
 #Preview {
     ContentView()
+}
+
+struct BlueView: View {
+    var body: some View {
+        VStack {
+            Text("BlueView doesn't need to know about NumberManager")
+                .padding()
+                .foregroundColor(.white)
+                .font(.headline)
+                .multilineTextAlignment(.center)
+            
+            RedView()
+                .padding()
+        }
+        .padding()
+        .background(Color.blue)
+    }
+}
+
+struct RedView: View {
+    @EnvironmentObject var numberManager: NumberManager
+    
+    var body: some View {
+        VStack {
+            Text("\(numberManager.counter)")
+                .padding()
+                .foregroundColor(.white)
+                .font(.title)
+        }
+        .background(Color.red)
+    }
 }
